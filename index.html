@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>LLLLuuu_ · 极简空间</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            /* 冷色调深灰 → 纯黑渐变，无泛红 */
+            background: radial-gradient(circle at 30% 10%, #1c1c1e 0%, #0a0a0c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, 'SF Pro Text', 'SF Pro Display', 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 极简微纹理（无动画，静态） */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 主容器：液态玻璃卡片（无自动动画，只有hover弹性） */
+        .glass-container {
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            background: rgba(20, 20, 25, 0.35);
+            border-radius: 48px;
+            padding: 2rem 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            /* 弹性过渡：放大/缩小使用缓动曲线，幅度小 */
+            transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+            will-change: transform;
+        }
+
+        /* 移入卡片：轻微弹性放大 */
+        .glass-container:hover {
+            transform: scale(1.02);
+        }
+
+        /* 移出卡片恢复原状（transition自动处理） */
+        
+        /* 移除之前的高光扫动动画，保持静态玻璃质感 */
+        .glass-container::after {
+            display: none;
+        }
+
+        /* 主文字：无自动动画，只有静态样式 */
+        .hero-text {
+            font-size: clamp(3rem, 12vw, 6rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            text-shadow: 0 0 15px rgba(255,255,240,0.2);
+        }
+
+        /* 极客小尾巴，静态无动画 */
+        .hero-sub {
+            text-align: center;
+            margin-top: 1.2rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.55);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: inline-block;
+            width: auto;
+            padding-top: 1rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 响应式: 小屏幕文字不换行 */
+        @media (max-width: 500px) {
+            .glass-container {
+                padding: 1.5rem 2rem;
+                border-radius: 36px;
+            }
+            .hero-text {
+                white-space: normal;
+                word-break: keep-all;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主内容玻璃卡片 -->
+    <div class="glass-container">
+        <div class="content">
+            <div class="hero-text">I'm LLLLuuu_</div>
+            <div class="hero-sub">✦  digital existence  ✦</div>
+        </div>
+    </div>
+</body>
+</html>
